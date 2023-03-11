@@ -10,12 +10,10 @@
 #   - board: bdn9_rev2
 #   - board: nice_nano_v2
 #     shield: reviung41
-#
+
 ---
 include:
   - board: nice_nano_v2
-    shield: leeloo_micro_left
+    shield: leeloo_left
   - board: nice_nano_v2
-    shield: leeloo_micro_right
-  - board: nice_nano_v2
-    shield: settings_reset
+    shield: leeloo_right
