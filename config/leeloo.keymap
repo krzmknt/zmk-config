@@ -9,50 +9,84 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Layers
-#define DEFAULT    0       // default_layer
-#define LOWER      1       // lower_layer
-#define RAISE      2       // raise_layer
+#define FIRST      0
+#define SECOND     1
+#define MEDIA      2
+
+&mt {
+    tapping-term-ms = <200>;
+};
 
 / {
-
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            bindings = <
-&kp ESC    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                           &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp BSLH
-&kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T                            &kp Y      &kp U      &kp I      &kp O      &kp P      &kp GRAV
-&kp CAPS   &kp A      &kp S      &kp D      &kp F      &kp G                            &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
-&kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp B                            &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH   &kp RSHFT
-                   &kp LALT   &kp LCTRL  &lt 1 RET  &lt 2 MINUS   &kp LGUI   &kp LGUI   &lt 2 EQUAL  &lt 1 SPACE  &kp BSPC   &kp DEL
-            >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+// =========================================================================================================================================================
+        first_layer {
+            bindings = <
+// ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐       ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐
+// │    Q(0)   │    W(1)   │    E(2)   │    R(3)   │    T(4)   │           │       │           │    Y(5)   │    U(6)   │    I(7)   │    O(8)   │    P(9)   │
+     &kp Q       &kp W       &kp E       &kp R       &kp T                                       &kp Y       &kp U       &kp I       &kp O       &kp P
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   A(10)   │   S(11)   │    D(12)  │   F(13)   │   G(14)   │           │       │           │   H(15)   │   J(16)   │   K(17)   │   L(18)   │   ;(19)   │
+     &mt LCTRL A  &kp S      &kp D       &kp F       &kp G                                       &kp H       &kp J       &kp K       &kp L       &mt RCTRL SEMI
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   Z(20)   │   X(21)   │   C(22)   │   V(23)   │   B(24)   │   ♡(25)   │       │   ~(26)   │   N(27)   │   M(28)   │   ,(29)   │   .(30)   │   /(31)   │
+     &mt LSHIFT Z  &kp X     &kp C       &kp V       &kp B       &mo MEDIA           &kp TILDE   &kp N       &kp M       &kp COMMA   &kp DOT     &mt RSHIFT FSLH
+// └───────────┴───────────┤           │           │           │           │       │           │           │           │           ├───────────┴───────────┘
+//                         │  OPT(32)  │  TAB(33)  │  CMD(34)  │ SPACE(35) │       │ BSPC(36)  │  INF(37)  │   ↓(38)   │   ↑(39)   │
+                             &kp LALT    &lt 2 TAB  &kp LGUI   &lt 1 SPACE           &kp BSPC    &kp RGUI    &kp MINUS   &kp EQUAL
+//                         └───────────┴───────────┴───────────┴───────────┘       └───────────┴───────────┴───────────┴───────────┘
+            >;
         };
 
-        lower_layer {
-            bindings = <
-&trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                           &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp F11
-&trans     &trans     &trans     &trans     &trans     &trans                           &kp PG_UP  &kp HOME   &kp UP     &kp END    &trans     &kp F12
-&trans     &trans     &trans     &trans     &trans     &trans                           &kp PG_DN  &kp LEFT   &kp DOWN   &kp RIGHT  &trans     &trans
-&trans     &trans     &trans     &trans     &trans     &trans                           &trans     &trans     &trans     &trans     &trans     &trans
-                      &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans
-            >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+// =========================================================================================================================================================
+        second_layer {
+            bindings = <
+// ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐       ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐
+// │    Q(0)   │    W(1)   │    E(2)   │    R(3)   │    T(4)   │           │       │           │    Y(5)   │    U(6)   │    I(7)   │    O(8)   │    P(9)   │
+     &kp ECS     &kp N7      &kp N8      &kp N9      &kp PLUS                                    &none       &none       &none       &none       &none
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   A(10)   │   S(11)   │    D(12)  │   F(13)   │   G(14)   │           │       │           │   H(15)   │   J(16)   │   K(17)   │   L(18)   │   ;(19)   │
+     &kp LCTRL   &kp N4      &kp N5      &kp N6      &kp MINUS                                   &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SINGLE_QUOTE
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   Z(20)   │   X(21)   │   C(22)   │   V(23)   │   B(24)   │   ♡(25)   │       │   ~(26)   │   N(27)   │   M(28)   │   ,(29)   │   .(30)   │   /(31)   │
+     &kp LSHIFT  &kp N1      &kp N2      &kp N3      &kp DOT     &none               &trans      &none       &none       &kp LBRC    &kp RBRC    &kp BSKH
+// └───────────┴───────────┤           │           │           │           │       │           │           │           │           ├───────────┴───────────┘
+//                         │  OPT(32)  │  TAB(33)  │  CMD(34)  │ SPACE(35) │       │ BSPC(36)  │  INF(37)  │   ↓(38)   │   ↑(39)   │
+                             &kp N0      &trans      &trans      &trans              &trans      &none       &none       &trans
+//                         └───────────┴───────────┴───────────┴───────────┘       └───────────┴───────────┴───────────┴───────────┘
+            >;
         };
 
-        raise_layer {
+
+// =========================================================================================================================================================
+        media_layer {
             bindings = <
-&trans     &trans     &trans     &trans     &trans     &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans
-&trans     &trans     &trans     &trans     &trans     &trans                           &trans        &trans        &trans        &trans        &reset        &bootloader
-&trans     &trans     &trans     &trans     &trans     &trans                           &trans        &trans        &trans        &trans        &trans        &trans
-&trans     &trans     &trans     &trans     &trans     &trans                           &trans        &trans        &trans        &trans        &trans        &trans
-                      &trans     &trans     &trans     &trans     &trans     &trans     &trans        &trans        &bt BT_CLR    &trans
+// ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐       ┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐
+// │    Q(0)   │    W(1)   │    E(2)   │    R(3)   │    T(4)   │           │       │           │    Y(5)   │    U(6)   │    I(7)   │    O(8)   │    P(9)   │
+     &none       &none       &none       &none       &none                                       &bt BT_CLR  &none       &none       &none       &none
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   A(10)   │   S(11)   │    D(12)  │   F(13)   │   G(14)   │           │       │           │   H(15)   │   J(16)   │   K(17)   │   L(18)   │   ;(19)   │
+     &none       &none       &none       &none       &none                                       &bt BT_PRV  &kp C_BRI_DN &kp C_BRI_UP &bt BT_NXT     &none
+// │           │           │           │           │           │           │       │           │           │           │           │           │           │
+// │   Z(20)   │   X(21)   │   C(22)   │   V(23)   │   B(24)   │   ♡(25)   │       │   ~(26)   │   N(27)   │   M(28)   │   ,(29)   │   .(30)   │   /(31)   │
+     &none       &none       &none       &none       &none       &none               &none       &none       &none       &none       &none       &none
+// └───────────┴───────────┤           │           │           │           │       │           │           │           │           ├───────────┴───────────┘
+//                         │  OPT(32)  │  TAB(33)  │  CMD(34)  │ SPACE(35) │       │ BSPC(36)  │  INF(37)  │   ↓(38)   │   ↑(39)   │
+                             &none       &none       &none       &none               &none       &none       &kp C_VOL_DN &kp C_VOL_UP
+//                         └───────────┴───────────┴───────────┴───────────┘       └───────────┴───────────┴───────────┴───────────┘
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
+    };
 
+    combos {
+        combo_return {
+            timeout-ms = <50>;
+            key-positions = <10 19>;
+            bindings = <&kp RETURN>;
+        };
     };
 };
