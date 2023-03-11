@@ -53,7 +53,7 @@
      &kp LCTRL   &kp N4      &kp N5      &kp N6      &kp MINUS                                   &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &kp SINGLE_QUOTE
 // │           │           │           │           │           │           │       │           │           │           │           │           │           │
 // │   Z(20)   │   X(21)   │   C(22)   │   V(23)   │   B(24)   │   ♡(25)   │       │   ~(26)   │   N(27)   │   M(28)   │   ,(29)   │   .(30)   │   /(31)   │
-     &kp LSHIFT  &kp N1      &kp N2      &kp N3      &kp DOT     &none               &trans      &none       &none       &kp LBRC    &kp RBRC    &kp BSKH
+     &kp LSHIFT  &kp N1      &kp N2      &kp N3      &kp DOT     &none               &trans      &none       &none       &kp LBRC    &kp RBRC    &kp BSLH
 // └───────────┴───────────┤           │           │           │           │       │           │           │           │           ├───────────┴───────────┘
 //                         │  OPT(32)  │  TAB(33)  │  CMD(34)  │ SPACE(35) │       │ BSPC(36)  │  INF(37)  │   ↓(38)   │   ↑(39)   │
                              &kp N0      &trans      &trans      &trans              &trans      &none       &none       &trans
